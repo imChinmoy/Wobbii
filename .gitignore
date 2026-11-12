@@ -1,0 +1,117 @@
+
+# =====================================
+# Environment variables & secrets
+# =====================================
+.env
+.env.*
+!.env.example
+!.env.sample
+
+# Private keys and certificates
+*.pem
+*.key
+*.p12
+*.pfx
+
+# =====================================
+# Node.js
+# =====================================
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Package manager caches
+.npm/
+.pnpm-store/
+.yarn/cache/
+
+# Build outputs
+dist/
+build/
+coverage/
+.nyc_output/
+
+# Runtime files
+*.log
+logs/
+*.pid
+*.seed
+
+# =====================================
+# Fastify / Backend
+# =====================================
+# Temporary files
+.tmp/
+.temp/
+
+# =====================================
+# Drizzle ORM
+# =====================================
+# Keep migration SQL and metadata tracked!
+# Ignore only local Drizzle artifacts if generated
+drizzle-*.log
+
+# =====================================
+# Flutter / Dart
+# =====================================
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+.pub-cache/
+.pub/
+/build/
+
+# Generated plugin registrants
+# Keep platform source files tracked.
+
+# Flutter IDE files
+*.iml
+
+# Android generated files
+**/android/.gradle/
+**/android/captures/
+**/android/local.properties
+**/android/key.properties
+**/android/app/debug/
+**/android/app/profile/
+**/android/app/release/
+
+# iOS generated files
+**/ios/Flutter/.last_build_id
+**/ios/Flutter/Generated.xcconfig
+**/ios/Flutter/flutter_export_environment.sh
+**/ios/Pods/
+**/ios/.symlinks/
+**/ios/Runner/GeneratedPluginRegistrant.*
+
+# =====================================
+# IDEs & editors
+# =====================================
+.idea/
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+
+# =====================================
+# Operating system
+# =====================================
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# =====================================
+# Temporary files
+# =====================================
+*.tmp
+*.swp
+*.swo
+*~
+
+# =====================================
+# Test artifacts
+# =====================================
+test-results/
+playwright-report/

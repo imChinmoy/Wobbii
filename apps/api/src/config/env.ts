@@ -7,6 +7,7 @@ const envSchema = z.object({
     HOST : z.string().default('0.0.0.0'),
     LOG_LEVEL : z.enum(['debug', 'info', 'warn', 'error']).default('debug'),
     DATABASE_URL : z.string().min(1),
+    JWT_SECRET : z.string().min(16),
 })
 
 export const env = envSchema.parse(process.env);
