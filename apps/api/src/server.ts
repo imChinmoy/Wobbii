@@ -1,30 +1,39 @@
-import {env} from './config/env.js'; 
-import { buildApp } from './app.js';
+import { buildApp } from "./app.js";
+import { env } from "./config/env.js";
 
 const app = buildApp();
 
 async function start() {
-    try {
-        await app.listen({ port: env.PORT, host: env.HOST });
-        app.log.info(`Server listening on ${env.HOST}:${env.PORT}`);
-    } catch (error) {
-        app.log.error(error);
-        process.exit(1);
-    }
+  try {
+    await app.listen({
+      port: env.PORT,
+      host: env.HOST,
+    });
+
+    app.log.info(`Wobbii API running on port ${env.PORT}`);
+  } catch (error) {
+    app.log.error(error);
+    process.exitCode = 1;
+  }
 }
 
-async function stop() {
-    try{
-        app.log.info('Server stopped');
-        await app.close();
-        process.exit(0);
-    }catch (error) {
-        app.log.error(error);
-        process.exit(1);
-    }
+let shuttingDown = false;
+
+async function shutdown(signal: string) {
+  if (shuttingDown) return;
+
+  shuttingDown = true;
+  app.log.info({ signal }, "Graceful shutdown started");
+
+  try {
+    await app.close();
+  } catch (error) {
+    app.log.error(error, "Shutdown failed");
+    process.exitCode = 1;
+  }
 }
 
-process.on('SIGINT', stop);
-process.on('SIGTERM', stop);
+process.once("SIGINT", () => void shutdown("SIGINT"));
+process.once("SIGTERM", () => void shutdown("SIGTERM"));
 
-start();
+void start();
